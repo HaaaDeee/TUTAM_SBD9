@@ -14,7 +14,7 @@ export default function PostPage() {
         const postData = { name, title, content };
 
         try {
-            const response = await fetch("http://localhost:5000/api/posts", {
+            const response = await fetch("https://tutam-naufalhadirasikhin-sbd9be.vercel.app/post", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

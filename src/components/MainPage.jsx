@@ -9,7 +9,7 @@ export default function MainPage() {
     // Fungsi untuk mengambil data post dari backend
     const fetchPosts = async () => {
         try {
-            const response = await fetch("http://localhost:5000/api/posts");
+            const response = await fetch("https://tutam-naufalhadirasikhin-sbd9be.vercel.app/posts");
             if (response.ok) {
                 const data = await response.json();
                 setPosts(data);
@@ -20,6 +20,24 @@ export default function MainPage() {
             setError("Error fetching posts.");
         } finally {
             setLoading(false);
+        }
+    };
+
+    // Fungsi untuk menghapus post
+    const handleDelete = async (id) => {
+        try {
+            const response = await fetch(`https://tutam-naufalhadirasikhin-sbd9be.vercel.app/posts/${id}`, {
+                method: "DELETE",
+            });
+    
+            if (response.ok) {
+                // Hapus post dari state setelah berhasil dihapus dari backend
+                setPosts(posts.filter((post) => post._id !== id));
+            } else {
+                console.error("Failed to delete post");
+            }
+        } catch (error) {
+            console.error("Error deleting post:", error);
         }
     };
 
